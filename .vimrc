@@ -46,15 +46,16 @@ set showmatch "高亮显示括号到匹配
 set showcmd "显示命令
 set cursorline "突出当前行
 set cursorcolumn "突出当前列
-set background=light "背景色
 set completeopt="menu" "补全不需要生成预览，破坏整体感也不大方便[主要是YCM需要用这个]
+"colorscheme solarized 
+
 
 if has('gui_running')
-	colorscheme torte
+	set background=dark
 else
-	colorscheme murphy
+	set background=dark
 endif
-"colorscheme solarized
+colorscheme solarized
 "let g:solarized_termcolor=16
 "let g:solarized_termtrans=1
 "[显示]->end}}}
@@ -137,6 +138,7 @@ Bundle 'TxtBrowser'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'majutsushi/tagbar'
 Bundle 'SirVer/ultisnips'
+Bundle 'altercation/vim-colors-solarized'
 "Bundle 'https://github.com/nathanaelkane/vim-indent-guides.git'
 call vundle#end()
 
@@ -242,13 +244,25 @@ nmap <F8> :silent! !ctags -R –c++-kinds=+px –fields=+iaS –extra=+q .<CR>
 "let Tlist_Process_File_Always=0 "是否一致更新tags
 "[taglist]->end}}}
 
-"[Tagbar->begin]{{{
+"[Tagbar]->begin{{{
 nmap <F10> :silent! TagbarToggle<CR>
 autocmd FileType c,cpp nested :TagbarOpen
-"[Tagbar->end]}}}
+"[Tagbar]->end}}}
 
 "[tags路径]{{{
-set tags=F:/nginx-1.9.6/src/tags
+set tags+=F:/nginx-1.9.6/src/tags
+set tags+=F:/redis-3.0/src/tags
 "}}}
+
+"[ultsnips]->begin{{{
+let g:UltiSnipsUsePythonVersion=2 "python version supported
+"let g:UltiSnipsSnippetDirectories=['UltiSnips']
+let g:UltiSnipsSnippetsDir='F:\Program Files (x86)\Vim\vimfiles\bundle\ultisnips'
+let g:UltiSnipsExpandTrigger="<M>"
+let g:UltiSnipsListSnippets="<M-l>"
+let g:UltiSnipsJumpForwardTrigger="<M-j>"
+let g:UltiSnipsJumpBackwardTrigger="<M-k>"
+
+"[ultsnips]->end}}}
 
 "[插件]->end}}}
