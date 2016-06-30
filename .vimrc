@@ -139,6 +139,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'majutsushi/tagbar'
 Bundle 'SirVer/ultisnips'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'klen/python-mode'
 "Bundle 'https://github.com/nathanaelkane/vim-indent-guides.git'
 call vundle#end()
 
