@@ -1,0 +1,130 @@
+"[环境判断]->begin{{{
+if has("gui_running")
+	let g:isGUI = 1
+else 
+	let g:isGUI = 0
+endif
+"[环境判断]->end}}}
+
+"[路径]->begin{{{
+set dir=$HOME/.vim
+"[路径]->end}}}
+
+"[前置]->begin{{{
+set nocompatible "设置不兼容
+set shortmess=atI "不显示孤儿帮助
+set nobackup "不备份
+syntax on "语法显示高亮
+syntax enable "开启语法高亮功能
+set go= "去工具栏
+set guioptions-=m "去菜单栏
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+if has("win32") || has("win64")
+		language messages zh_CN.utf-8
+endif
+"[前置]->end}}}
+
+"[格式和显示]->begin{{{
+"[格式]
+set tabstop=4 "tabs=4空格
+set smartindent "自动对齐缩进
+"[显示]
+set t_Co=256 "终端配色
+set number "显示行
+set showmatch "高亮显示括号到匹配
+set cursorline "突出当前行
+set background=light
+if has('gui_running')
+	colorscheme torte
+else
+	colorscheme murphy
+endif
+"colorscheme solarized
+"let g:solarized_termcolor=16
+"let g:solarized_termtrans=1
+"[格式和显示]->end}}}
+
+"[搜索]->begin{{{
+set incsearch "光标定位到查找结果
+set hls "高亮搜索结果
+set ic "忽略大小写
+set nowrapscan "不循环查找
+"[搜索]->end}}}
+
+"[文件]->begin{{{
+set encoding=utf-8
+filetype on
+filetype plugin indent on
+set fileformats=unix,dos,mac
+set fileencodings=utf-8,utf-16,gbk2312
+"[文件]->end}}}
+
+"[折叠]->begin{{{
+:highlight Folded guibg=black
+set foldmethod=marker
+nnoremap<silent>  <space> @=((foldclosed(line('.')) < 0)?'zc':'zo')<CR>
+"[折叠]->end}}}
+
+"[鼠标]->begin{{{
+set mouse=a	"允许鼠标定位光标
+set selection=exclusive
+"set selectmode=mouse,key
+"[鼠标]->end}}}
+
+"[键盘映射]->begin{{{
+"编辑状态下光标移动
+let mapleader=","
+imap <M-k> <Up>
+imap <M-j> <Down>
+imap <M-h> <Left>
+imap <M-l> <Right>
+"[键盘映射]->end}}}
+
+"[插件]->begin{{{
+
+"[Vundle]->begin{{{
+set rtp+=$HOME/.vim/bundle/vundle/
+call vundle#begin()
+Bundle 'gmarik/vundle'
+"Bundle 'altercation/vim-colors-solarized' "一个主题
+Bundle 'a.vim'
+Bundle 'Align'
+Bundle 'bling/vim-airline'
+Bundle 'bling/vim-bufferline'
+Bundle 'jiangmiao/auto-pairs'
+Bundle 'msanders/snipmate.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'TxtBrowser'
+Bundle 'Valloric/YouCompleteMe'
+call vundle#end()
+"[Vundle]->end}}}
+
+"[airline]->begin{{{
+""https://github.com/powerline/fonts(fonts)"
+set laststatus=2
+if g:isGUI
+	if has('win32')||has('win64')
+		set guifont=Droid_Sans_Mono_for_Powerline:h11
+		let g:airline_left_sep = '⮀'
+		let g:airline_left_alt_sep = '⮁'
+		let g:airline_right_sep = '⮂'
+		let g:airline_right_alt_sep = '⮃'
+		let g:airline_symbols.branch = '⭠'
+		let g:airline_symbols.readonly = '⭤'
+		let g:airline_symbols.linenr = '⭡'
+	else
+		set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
+	endif
+let g:airline_powerline_fonts=1 
+endif
+
+let g:airline_theme="powerlineish"
+let g:airline_detect_modified = 1
+let g:airline_detect_paste = 1
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#bufferline#overwrite_variables = 0
+"[airline]->end}}}
+
+"[插件]->end}}}
